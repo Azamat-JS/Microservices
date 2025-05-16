@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+package todo;
+
+service TodoService {
+    rpc PostTodo (PostTodo) returns (Todo) {}
+    rpc GetTodos (Empty) returns (Todos) {}
+}
+
+
