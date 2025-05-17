@@ -13,19 +13,23 @@
     "grpc-nest": {
       "type": "application",
       "root": "apps/grpc-nest",
-      "entryFile": "main",
-      "sourceRoot": "apps/grpc-nest/src",
+      "entryFile": "src/main",
+      "sourceRoot": "./",
       "compilerOptions": {
-        "tsConfigPath": "apps/grpc-nest/tsconfig.app.json"
+        "tsConfigPath": "apps/grpc-nest/tsconfig.app.json",
+        "assets": ["proto/*.proto"],
+        "watchAssets": true
       }
     },
     "todo": {
       "type": "application",
       "root": "apps/todo",
-      "entryFile": "main",
-      "sourceRoot": "apps/todo/src",
+      "entryFile": "src/main",
+      "sourceRoot": "./",
       "compilerOptions": {
-        "tsConfigPath": "apps/todo/tsconfig.app.json"
+        "tsConfigPath": "apps/todo/tsconfig.app.json",
+        "assets": ["proto/*.proto"],
+        "watchAssets": true
       }
     }
   }
