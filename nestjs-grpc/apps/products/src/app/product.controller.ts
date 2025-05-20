@@ -1,5 +1,4 @@
 import { Controller } from "@nestjs/common";
-import { Observable } from "rxjs";
 import {
   CreateProductDto,
   Empty,
@@ -10,30 +9,60 @@ import {
   ProductServiceControllerMethods,
   UpdataProductDto,
 } from "types/proto/products";
-import { ProductMicroService } from "./product.service";
 
-@Controller("product")
+@Controller()
 @ProductServiceControllerMethods()
 export class ProductController implements ProductServiceController {
-  constructor(private readonly productMicroService: ProductMicroService) {}
 
-  craeteProduct(request: CreateProductDto): Promise<ProductResponse> {
-    return this.productMicroService.createProduct(request);
+ async craeteProduct(request: CreateProductDto): Promise<ProductResponse> {
+    return {
+      productId: 1,
+      name: "Phone",
+      price: 13
+    }
   }
 
-  getProduct(request: ProductRequest): Promise<ProductResponse> {
-    return this.productMicroService.getProduct(request.productId);
+ async getProduct(request: ProductRequest): Promise<ProductResponse> {
+    return {
+      productId: 1,
+      name: "Phone",
+      price: 13
+    }
   }
 
-  findAllProducts(request: Empty): Promise<Products> {
-    return this.productMicroService.findAllProducts();
+ async findAllProducts(request: Empty): Promise<Products> {
+    return {users: [
+      {
+      productId: 1,
+      name: "Phone",
+      price: 13
+    },
+    {
+      productId: 1,
+      name: "Phone",
+      price: 13
+    },
+    {
+      productId: 1,
+      name: "Phone",
+      price: 13
+    }
+    ] }
   }
 
-  updateProduct(request: UpdataProductDto): Promise<ProductResponse> {
-    return this.productMicroService.updateProduct(request);
+ async updateProduct(request: UpdataProductDto): Promise<ProductResponse> {
+    return {
+  productId: 110,
+      name: "Cat",
+      price: 85
+    }
   }
 
-  deleteProduct(request: ProductRequest): Promise<ProductResponse> {
-    return this.productMicroService.deleteProduct(request.productId);
+ async deleteProduct(request: ProductRequest): Promise<ProductResponse> {
+    return {
+      productId: 11,
+      name: "Hat",
+      price: 900
+    }
   }
 }
