@@ -18,7 +18,7 @@ export class ProductController implements OnModuleInit{
         return this.productService.craeteProduct(createProductDto)
     }
 
-    @Get('all')
+    @Get('many')
     findAll(){
         return this.productService.findAllProducts({})
     }

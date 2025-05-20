@@ -31,7 +31,7 @@ export class ProductController implements ProductServiceController {
 
   async findAllProducts(request: Empty): Promise<Products> {
     return {
-      users: [
+      products: [
         {
           productId: 1,
           name: "Phone",

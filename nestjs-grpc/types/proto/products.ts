@@ -19,7 +19,7 @@ export interface Empty {
 }
 
 export interface Products {
-  users: ProductResponse[];
+  products: ProductResponse[];
 }
 
 export interface ProductRequest {

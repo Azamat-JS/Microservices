@@ -18,7 +18,7 @@ message UpdataProductDto {
 message Empty {};
 
 message Products {
-    repeated ProductResponse users = 1;
+    repeated ProductResponse products = 1;
 }
 
 message ProductRequest {
