@@ -65,7 +65,7 @@ __decorate([
     __metadata("design:returntype", String)
 ], PaymentController.prototype, "getHello", null);
 __decorate([
-    (0, microservices_1.MessagePattern)("process-payment"),
+    (0, microservices_1.EventPattern)("process-payment"),
     __param(0, (0, microservices_1.Payload)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),

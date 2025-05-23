@@ -43,6 +43,24 @@ const common_1 = __webpack_require__(/*! @nestjs/common */ "@nestjs/common");
 const order_service_1 = __webpack_require__(/*! ./order.service */ "./apps/order/src/order.service.ts");
 const microservices_1 = __webpack_require__(/*! @nestjs/microservices */ "@nestjs/microservices");
 const constant_1 = __webpack_require__(/*! ./constant */ "./apps/order/src/constant.ts");
+const orders = [
+    {
+        orderId: 1,
+        product: 'apple'
+    },
+    {
+        orderId: 2,
+        product: 'lemon'
+    },
+    {
+        orderId: 3,
+        product: 'banana'
+    },
+    {
+        orderId: 4,
+        product: 'pear'
+    },
+];
 let OrderController = class OrderController {
     orderService;
     paymentMQClient;
@@ -69,7 +87,7 @@ __decorate([
     __metadata("design:returntype", String)
 ], OrderController.prototype, "getHello", null);
 __decorate([
-    (0, microservices_1.MessagePattern)("order-created"),
+    (0, microservices_1.EventPattern)("order-created"),
     __param(0, (0, microservices_1.Payload)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),

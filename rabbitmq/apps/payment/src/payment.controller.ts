@@ -1,6 +1,6 @@
 import { Controller, Get, Inject } from '@nestjs/common';
 import { PaymentService } from './payment.service';
-import { ClientProxy, MessagePattern, Payload } from '@nestjs/microservices';
+import { ClientProxy, EventPattern, MessagePattern, Payload } from '@nestjs/microservices';
 import { NOTIFICATION_CLIENT } from './constants';
 
 @Controller()
@@ -14,7 +14,7 @@ export class PaymentController {
     return this.paymentService.getHello();
   }
 
-  @MessagePattern("process-payment")
+  @EventPattern("process-payment")
   handleProcessPayment(@Payload() order: any){
     console.log(`Payment service in process`, order)
     this.notificationClient.emit("payment-succed", order)

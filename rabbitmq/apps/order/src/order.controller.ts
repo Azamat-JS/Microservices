@@ -1,7 +1,26 @@
 import { Controller, Get, Inject } from '@nestjs/common';
 import { OrderService } from './order.service';
-import { ClientProxy, MessagePattern, Payload } from '@nestjs/microservices';
+import { ClientProxy, EventPattern, MessagePattern, Payload } from '@nestjs/microservices';
 import { NOTIFICATION_CLIENT, PAYMENT_CLIENT } from './constant';
+
+const orders = [
+  {
+  orderId: 1,
+  product: 'apple'
+},
+  {
+  orderId: 2,
+  product: 'lemon'
+},
+  {
+  orderId: 3,
+  product: 'banana'
+},
+  {
+  orderId: 4,
+  product: 'pear'
+},
+]
 
 @Controller()
 export class OrderController {
@@ -16,7 +35,7 @@ export class OrderController {
     return this.orderService.getHello();
   }
 
-  @MessagePattern("order-created")
+  @EventPattern("order-created")
   handleOrderCreated(@Payload() order:any){
     console.log('Order service received new order: ', order);
     this.paymentMQClient.emit("process-payment", order);

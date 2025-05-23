@@ -1,0 +1,12 @@
+[NX v21.0.3 Daemon Server] - 2025-05-21T02:53:46.550Z - Started listening on: /tmp/2ffac8d05e40883377dc/d.sock
+[NX v21.0.3 Daemon Server] - 2025-05-21T02:53:46.552Z - [WATCHER]: Subscribed to changes within: /home/azamat/Desktop/Microservices/rabbitmq (native)
+[NX v21.0.3 Daemon Server] - 2025-05-21T02:53:46.556Z - Established a connection. Number of open connections: 1
+[NX v21.0.3 Daemon Server] - 2025-05-21T02:53:46.557Z - Established a connection. Number of open connections: 2
+[NX v21.0.3 Daemon Server] - 2025-05-21T02:53:46.559Z - Closed a connection. Number of open connections: 1
+[NX v21.0.3 Daemon Server] - 2025-05-21T02:53:46.561Z - [REQUEST]: Responding to the client. Shutdown initiated
+[NX v21.0.3 Daemon Server] - 2025-05-21T02:53:46.561Z - Done responding to the client Shutdown initiated
+[NX v21.0.3 Daemon Server] - 2025-05-21T02:53:46.562Z - Handled FORCE_SHUTDOWN. Handling time: 0. Response time: 1.
+[NX v21.0.3 Daemon Server] - 2025-05-21T02:53:46.562Z - Closed a connection. Number of open connections: 0
+[NX v21.0.3 Daemon Server] - 2025-05-21T02:53:46.563Z - [WATCHER]: Stopping the watcher for /home/azamat/Desktop/Microservices/rabbitmq (sources)
+[NX v21.0.3 Daemon Server] - 2025-05-21T02:53:46.563Z - [WATCHER]: Stopping the watcher for /home/azamat/Desktop/Microservices/rabbitmq (outputs)
+[NX v21.0.3 Daemon Server] - 2025-05-21T02:53:46.563Z - Server stopped because: "Request to shutdown"

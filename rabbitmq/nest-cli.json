@@ -19,13 +19,13 @@
         "tsConfigPath": "apps/api-gateway/tsconfig.app.json"
       }
     },
-    "notificaion": {
+    "notification": {
       "type": "application",
-      "root": "apps/notificaion",
+      "root": "apps/notification",
       "entryFile": "main",
-      "sourceRoot": "apps/notificaion/src",
+      "sourceRoot": "apps/notification/src",
       "compilerOptions": {
-        "tsConfigPath": "apps/notificaion/tsconfig.app.json"
+        "tsConfigPath": "apps/notification/tsconfig.app.json"
       }
     },
     "order": {

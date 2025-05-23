@@ -40,7 +40,6 @@ let ApiGatewayController = class ApiGatewayController {
     }
     createOrder(order) {
         this.client.emit("order-created", order);
-        console.log('Order created in api-gateway');
         return { message: 'Order received', order };
     }
 };

@@ -1,0 +1,225 @@
+{
+  "version": "6.0",
+  "nxVersion": "21.0.3",
+  "pathMappings": {},
+  "nxJsonPlugins": [],
+  "fileMap": {
+    "projectFileMap": {
+      "rabbitmq": [
+        {
+          "file": ".gitignore",
+          "hash": "2836708013400663046"
+        },
+        {
+          "file": "README.md",
+          "hash": "13408464382999289361"
+        },
+        {
+          "file": "apps/api-gateway/src/api-gateway.controller.spec.ts",
+          "hash": "14279982999950780545"
+        },
+        {
+          "file": "apps/api-gateway/src/api-gateway.controller.ts",
+          "hash": "11277193923519004317"
+        },
+        {
+          "file": "apps/api-gateway/src/api-gateway.module.ts",
+          "hash": "2654055447046503292"
+        },
+        {
+          "file": "apps/api-gateway/src/api-gateway.service.ts",
+          "hash": "4579853351109386346"
+        },
+        {
+          "file": "apps/api-gateway/src/constants.ts",
+          "hash": "1919056731298679970"
+        },
+        {
+          "file": "apps/api-gateway/src/main.ts",
+          "hash": "5183625943310079287"
+        },
+        {
+          "file": "apps/api-gateway/test/app.e2e-spec.ts",
+          "hash": "17345841604946212085"
+        },
+        {
+          "file": "apps/api-gateway/test/jest-e2e.json",
+          "hash": "7570273541430074424"
+        },
+        {
+          "file": "apps/api-gateway/tsconfig.app.json",
+          "hash": "7820475430541862969"
+        },
+        {
+          "file": "apps/notification/src/main.ts",
+          "hash": "4370769023054017132"
+        },
+        {
+          "file": "apps/notification/src/notification.controller.ts",
+          "hash": "4459065772150702633"
+        },
+        {
+          "file": "apps/notification/src/notification.module.ts",
+          "hash": "10276835863581303167"
+        },
+        {
+          "file": "apps/notification/src/notification.service.ts",
+          "hash": "17938517355631113998"
+        },
+        {
+          "file": "apps/notification/test/app.e2e-spec.ts",
+          "hash": "13023463983437599638"
+        },
+        {
+          "file": "apps/notification/test/jest-e2e.json",
+          "hash": "7570273541430074424"
+        },
+        {
+          "file": "apps/notification/tsconfig.app.json",
+          "hash": "12420521011062027807"
+        },
+        {
+          "file": "apps/order/src/constant.ts",
+          "hash": "1966439518202975878"
+        },
+        {
+          "file": "apps/order/src/main.ts",
+          "hash": "11067377864342536965"
+        },
+        {
+          "file": "apps/order/src/order.controller.spec.ts",
+          "hash": "12116457400098569872"
+        },
+        {
+          "file": "apps/order/src/order.controller.ts",
+          "hash": "16976346288219542400"
+        },
+        {
+          "file": "apps/order/src/order.module.ts",
+          "hash": "3064524382754916076"
+        },
+        {
+          "file": "apps/order/src/order.service.ts",
+          "hash": "17350489500761155226"
+        },
+        {
+          "file": "apps/order/test/app.e2e-spec.ts",
+          "hash": "15749615257177012448"
+        },
+        {
+          "file": "apps/order/test/jest-e2e.json",
+          "hash": "7570273541430074424"
+        },
+        {
+          "file": "apps/order/tsconfig.app.json",
+          "hash": "1681848611024966726"
+        },
+        {
+          "file": "apps/payment/src/constants.ts",
+          "hash": "8812697181841355299"
+        },
+        {
+          "file": "apps/payment/src/main.ts",
+          "hash": "4482552895302839014"
+        },
+        {
+          "file": "apps/payment/src/payment.controller.spec.ts",
+          "hash": "11891039841717400857"
+        },
+        {
+          "file": "apps/payment/src/payment.controller.ts",
+          "hash": "9462420210441946855"
+        },
+        {
+          "file": "apps/payment/src/payment.module.ts",
+          "hash": "17066827438162872684"
+        },
+        {
+          "file": "apps/payment/src/payment.service.ts",
+          "hash": "16911067477614781761"
+        },
+        {
+          "file": "apps/payment/test/app.e2e-spec.ts",
+          "hash": "11881920925598629882"
+        },
+        {
+          "file": "apps/payment/test/jest-e2e.json",
+          "hash": "7570273541430074424"
+        },
+        {
+          "file": "apps/payment/tsconfig.app.json",
+          "hash": "11483560967885861990"
+        },
+        {
+          "file": "dist/apps/api-gateway/main.js",
+          "hash": "17832341215741523994"
+        },
+        {
+          "file": "docker-compose.yaml",
+          "hash": "4931850366768133870"
+        },
+        {
+          "file": "nest-cli.json",
+          "hash": "8924563859748884555"
+        },
+        {
+          "file": "nx.json",
+          "hash": "10873497812608453819"
+        },
+        {
+          "file": "package-lock.json",
+          "hash": "7664430969722746932"
+        },
+        {
+          "file": "package.json",
+          "hash": "15660874382870723551",
+          "deps": [
+            "npm:@eslint/eslintrc",
+            "npm:@eslint/js",
+            "npm:@nestjs/cli",
+            "npm:@nestjs/schematics",
+            "npm:@nestjs/testing",
+            "npm:@swc/cli",
+            "npm:@swc/core",
+            "npm:@types/express",
+            "npm:@types/jest",
+            "npm:@types/node",
+            "npm:@types/supertest",
+            "npm:eslint",
+            "npm:eslint-config-prettier",
+            "npm:eslint-plugin-prettier",
+            "npm:globals",
+            "npm:jest",
+            "npm:nx",
+            "npm:prettier",
+            "npm:source-map-support",
+            "npm:supertest",
+            "npm:ts-jest",
+            "npm:ts-loader",
+            "npm:ts-node",
+            "npm:tsconfig-paths",
+            "npm:typescript",
+            "npm:typescript-eslint",
+            "npm:@nestjs/common",
+            "npm:@nestjs/core",
+            "npm:@nestjs/microservices",
+            "npm:@nestjs/platform-express",
+            "npm:amqp-connection-manager",
+            "npm:amqplib",
+            "npm:reflect-metadata",
+            "npm:rxjs"
+          ]
+        },
+        {
+          "file": "tsconfig.build.json",
+          "hash": "276845246908739715"
+        },
+        {
+          "file": "tsconfig.json",
+          "hash": "1945166008790952671"
+        }
+      ]
+    },
+    "nonProjectFiles": []
+  }
+}
