@@ -1,6 +1,6 @@
 import { Controller } from '@nestjs/common';
 import { UsersService } from './users.service';
-import { UserServiceController, CreateUserDto, UpdateUserDto, UserServiceControllerMethods, FindOneUserDto, PaginationDto, Users } from '@app/common';
+import { UserServiceController, CreateUserDto, UpdateUserDto, UserServiceControllerMethods, FindOneUserDto, PaginationDto, Users, Empty } from '@app/common';
 import { Observable } from 'rxjs';
 
 
@@ -13,9 +13,18 @@ export class UsersController implements UserServiceController{
     return this.usersService.create(createUserDto);
   }
 
-  findAllUsers() {
-    return this.usersService.findAll();
-  }
+findAllUsers(_: Empty): Promise<Users> {
+  return this.usersService.findAll().then(entities => ({
+    users: entities.map(entity => ({
+      id: entity.id,
+      username: entity.username,
+      password: entity.password,
+      age: entity.age,
+      subscribed: entity.subscribed,
+      socialMedia: entity.socialMedia,
+    })),
+  }));
+}
 
   findOneUser(findOneUserDto: FindOneUserDto) {
     return this.usersService.findOne(findOneUserDto.id);
