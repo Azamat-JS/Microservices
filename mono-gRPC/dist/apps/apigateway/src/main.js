@@ -227,13 +227,14 @@ let UsersService = class UsersService {
         this.client = client;
     }
     onModuleInit() {
-        this.client.getService(common_1.USER_SERVICE_NAME);
+        this.userService =
+            this.client.getService(common_1.USER_SERVICE_NAME);
     }
     create(createUserDto) {
         return this.userService.createUser(createUserDto);
     }
-    async findAll() {
-        return await (0, rxjs_1.firstValueFrom)(this.userService.findAllUsers({}));
+    findAll() {
+        return this.userService.findAllUsers({});
     }
     findOne(id) {
         return this.userService.findOneUser({ id });
@@ -247,10 +248,13 @@ let UsersService = class UsersService {
     emailUsers() {
         const users$ = new rxjs_1.ReplaySubject();
         users$.next({ page: 0, skip: 25 });
+        users$.next({ page: 0, skip: 25 });
+        users$.next({ page: 0, skip: 25 });
+        users$.next({ page: 0, skip: 25 });
         users$.complete();
         let chunkNumber = 1;
-        this.userService.queryUsers(users$).subscribe(users => {
-            console.log('Chunk', chunkNumber);
+        this.userService.queryUsers(users$).subscribe((users) => {
+            console.log('Chunk', chunkNumber, users);
             chunkNumber += 1;
         });
     }

@@ -13,17 +13,8 @@ export class UsersController implements UserServiceController{
     return this.usersService.create(createUserDto);
   }
 
-findAllUsers(_: Empty): Promise<Users> {
-  return this.usersService.findAll().then(entities => ({
-    users: entities.map(entity => ({
-      id: entity.id,
-      username: entity.username,
-      password: entity.password,
-      age: entity.age,
-      subscribed: entity.subscribed,
-      socialMedia: entity.socialMedia,
-    })),
-  }));
+findAllUsers() {
+  return this.usersService.findAll()
 }
 
   findOneUser(findOneUserDto: FindOneUserDto) {

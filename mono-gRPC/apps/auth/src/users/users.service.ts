@@ -1,76 +1,76 @@
 import { User, CreateUserDto, UpdateUserDto, PaginationDto, Users } from '@app/common';
-import { Injectable, NotFoundException } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { UserEntity } from './entity';
-import { Repository } from 'typeorm';
-import { Observable, Subject } from 'rxjs';
+import { Injectable, NotFoundException, OnModuleInit } from '@nestjs/common';
+import { randomUUID } from 'crypto';
+import {  Observable, Subject } from 'rxjs';
 
 
 @Injectable()
-export class UsersService {
-constructor(@InjectRepository(UserEntity) private readonly usersRepo: Repository<UserEntity>){}
- async create(createUserDto: CreateUserDto):Promise<User> {
-    const newUser = this.usersRepo.create(createUserDto)
-    return await this.usersRepo.save(newUser)
+export class UsersService implements OnModuleInit{
+  private readonly users: User[] = [];
+
+  onModuleInit() {
+    for (let i = 0; i <= 100; i++) {
+      this.create({username: randomUUID(), password: randomUUID(), age: 0})      
+    }
   }
 
-  findAll():Promise<User[]> {
-    return this.usersRepo.find()
+  create(createUserDto: CreateUserDto): User {
+  const user: User = {
+    ...createUserDto,
+    subscribed: false,
+    socialMedia: {},
+    id:randomUUID()
+  };
+  this.users.push(user)
+  return user;
   }
 
- async findOne(id: string):Promise<User> {
-   const findUser = await this.usersRepo.findOneBy({id})
-   if(!findUser) throw new NotFoundException("user not found")
-    return findUser;
+  findAll(): Users {
+    return {users: this.users}
   }
 
- async update(id: string, updateUserDto: UpdateUserDto):Promise<User> {
-    const findUser = await this.usersRepo.findOneBy({id})
-    if(!findUser) throw new NotFoundException('user not found')
-         findUser.socialMedia.fbUri = updateUserDto.socialMedia?.fbUri || undefined;
-        findUser.socialMedia.twitterUri = updateUserDto.socialMedia?.twitterUri || undefined;
-
-        return findUser;
-      }
-
-
- async remove(id: string):Promise<User> {
-  const findUser = await this.usersRepo.findOneBy({id})
-  if(!findUser) throw new NotFoundException('user not found')
-    await this.usersRepo.delete(id)
+  findOne(id: string):User {
+    const findUser = this.users.find((user) => user.id === id)
+    if(!findUser) throw new NotFoundException(`User with id: ${id} not found0`)
       return findUser
   }
 
+  update(id: string, updateUserDto: UpdateUserDto):User {
+    const userIndex = this.users.findIndex((user) => user.id === id)
+    if(userIndex !== -1){
+      this.users[userIndex] = {
+        ...this.users[userIndex],
+        ...updateUserDto
+      };
+      return this.users[userIndex]
+    }
+    throw new NotFoundException(`User with id: ${id} not found`)
+      }
+
+
+  remove(id: string):User {
+    const userIndex = this.users.findIndex((user) => user.id === id);
+    if(userIndex !== -1) {
+      return this.users.splice(userIndex)[0];
+    }
+    throw new NotFoundException(`User with id: ${id} not found`)
+  }
+
 queryUsers(paginationDtoStream: Observable<PaginationDto>): Observable<Users> {
-  const resultSubject = new Subject<Users>();
+  const subject = new Subject<Users>();
 
+  const onNext = (paginationDto: PaginationDto) => {
+    const start = paginationDto.page * paginationDto.skip;
+    subject.next({
+      users: this.users.slice(start, start + paginationDto.skip)
+    })
+  };
+  const onComplete = () => subject.complete();
   paginationDtoStream.subscribe({
-    next: async (paginationDto) => {
-      const { page, skip } = paginationDto;
-      const offset = page * skip;
-
-      // Fetch users with pagination
-      const entities = await this.usersRepo.find({
-        skip: offset,
-        take: skip,
-      });
-
-      // Map entities to plain User objects
-      const users: User[] = entities.map(entity => ({
-        id: entity.id,
-        username: entity.username,
-        password: entity.password,
-        age: entity.age,
-        subscribed: entity.subscribed,
-        socialMedia: entity.socialMedia,
-      }));
-
-      resultSubject.next({ users });
-    },
-    error: err => resultSubject.error(err),
-    complete: () => resultSubject.complete()
+    next: onNext,
+    complete: onComplete,
   });
 
-  return resultSubject.asObservable();
+  return subject.asObservable()
 }
 }

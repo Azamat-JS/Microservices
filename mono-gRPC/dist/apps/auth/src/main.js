@@ -19,92 +19,16 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.AuthModule = void 0;
 const common_1 = __webpack_require__(/*! @nestjs/common */ "@nestjs/common");
 const users_module_1 = __webpack_require__(/*! ./users/users.module */ "./apps/auth/src/users/users.module.ts");
-const typeorm_1 = __webpack_require__(/*! @nestjs/typeorm */ "@nestjs/typeorm");
-const entity_1 = __webpack_require__(/*! ./users/entity */ "./apps/auth/src/users/entity.ts");
 let AuthModule = class AuthModule {
 };
 exports.AuthModule = AuthModule;
 exports.AuthModule = AuthModule = __decorate([
     (0, common_1.Module)({
-        imports: [
-            typeorm_1.TypeOrmModule.forRoot({
-                type: 'postgres',
-                database: 'grpc',
-                username: 'postgres',
-                password: 'azamat998877',
-                host: 'localhost',
-                port: 5432,
-                synchronize: true,
-                autoLoadEntities: true,
-                entities: [entity_1.UserEntity]
-            }),
-            users_module_1.UsersModule
-        ],
+        imports: [users_module_1.UsersModule],
         controllers: [],
         providers: [],
     })
 ], AuthModule);
-
-
-/***/ }),
-
-/***/ "./apps/auth/src/users/entity.ts":
-/*!***************************************!*\
-  !*** ./apps/auth/src/users/entity.ts ***!
-  \***************************************/
-/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
-
-
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-var _a;
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.UserEntity = void 0;
-const common_1 = __webpack_require__(/*! @app/common */ "./libs/common/src/index.ts");
-const typeorm_1 = __webpack_require__(/*! typeorm */ "typeorm");
-let UserEntity = class UserEntity {
-    id;
-    username;
-    password;
-    age;
-    socialMedia;
-    subscribed;
-};
-exports.UserEntity = UserEntity;
-__decorate([
-    (0, typeorm_1.PrimaryGeneratedColumn)('uuid'),
-    __metadata("design:type", String)
-], UserEntity.prototype, "id", void 0);
-__decorate([
-    (0, typeorm_1.Column)(),
-    __metadata("design:type", String)
-], UserEntity.prototype, "username", void 0);
-__decorate([
-    (0, typeorm_1.Column)(),
-    __metadata("design:type", String)
-], UserEntity.prototype, "password", void 0);
-__decorate([
-    (0, typeorm_1.Column)(),
-    __metadata("design:type", Number)
-], UserEntity.prototype, "age", void 0);
-__decorate([
-    (0, typeorm_1.Column)('jsonb', { default: {} }),
-    __metadata("design:type", typeof (_a = typeof common_1.SocialMedia !== "undefined" && common_1.SocialMedia) === "function" ? _a : Object)
-], UserEntity.prototype, "socialMedia", void 0);
-__decorate([
-    (0, typeorm_1.Column)({ default: false }),
-    __metadata("design:type", Boolean)
-], UserEntity.prototype, "subscribed", void 0);
-exports.UserEntity = UserEntity = __decorate([
-    (0, typeorm_1.Entity)('users')
-], UserEntity);
 
 
 /***/ }),
@@ -139,17 +63,8 @@ let UsersController = class UsersController {
     createUser(createUserDto) {
         return this.usersService.create(createUserDto);
     }
-    findAllUsers(_) {
-        return this.usersService.findAll().then(entities => ({
-            users: entities.map(entity => ({
-                id: entity.id,
-                username: entity.username,
-                password: entity.password,
-                age: entity.age,
-                subscribed: entity.subscribed,
-                socialMedia: entity.socialMedia,
-            })),
-        }));
+    findAllUsers() {
+        return this.usersService.findAll();
     }
     findOneUser(findOneUserDto) {
         return this.usersService.findOne(findOneUserDto.id);
@@ -192,14 +107,12 @@ exports.UsersModule = void 0;
 const common_1 = __webpack_require__(/*! @nestjs/common */ "@nestjs/common");
 const users_service_1 = __webpack_require__(/*! ./users.service */ "./apps/auth/src/users/users.service.ts");
 const users_controller_1 = __webpack_require__(/*! ./users.controller */ "./apps/auth/src/users/users.controller.ts");
-const typeorm_1 = __webpack_require__(/*! @nestjs/typeorm */ "@nestjs/typeorm");
-const entity_1 = __webpack_require__(/*! ./entity */ "./apps/auth/src/users/entity.ts");
 let UsersModule = class UsersModule {
 };
 exports.UsersModule = UsersModule;
 exports.UsersModule = UsersModule = __decorate([
     (0, common_1.Module)({
-        imports: [typeorm_1.TypeOrmModule.forFeature([entity_1.UserEntity])],
+        imports: [],
         controllers: [users_controller_1.UsersController],
         providers: [users_service_1.UsersService],
     })
@@ -221,84 +134,74 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-var __param = (this && this.__param) || function (paramIndex, decorator) {
-    return function (target, key) { decorator(target, key, paramIndex); }
-};
-var _a;
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.UsersService = void 0;
 const common_1 = __webpack_require__(/*! @nestjs/common */ "@nestjs/common");
-const typeorm_1 = __webpack_require__(/*! @nestjs/typeorm */ "@nestjs/typeorm");
-const entity_1 = __webpack_require__(/*! ./entity */ "./apps/auth/src/users/entity.ts");
-const typeorm_2 = __webpack_require__(/*! typeorm */ "typeorm");
+const crypto_1 = __webpack_require__(/*! crypto */ "crypto");
 const rxjs_1 = __webpack_require__(/*! rxjs */ "rxjs");
 let UsersService = class UsersService {
-    usersRepo;
-    constructor(usersRepo) {
-        this.usersRepo = usersRepo;
+    users = [];
+    onModuleInit() {
+        for (let i = 0; i <= 100; i++) {
+            this.create({ username: (0, crypto_1.randomUUID)(), password: (0, crypto_1.randomUUID)(), age: 0 });
+        }
     }
-    async create(createUserDto) {
-        const newUser = this.usersRepo.create(createUserDto);
-        return await this.usersRepo.save(newUser);
+    create(createUserDto) {
+        const user = {
+            ...createUserDto,
+            subscribed: false,
+            socialMedia: {},
+            id: (0, crypto_1.randomUUID)()
+        };
+        this.users.push(user);
+        return user;
     }
     findAll() {
-        return this.usersRepo.find();
+        return { users: this.users };
     }
-    async findOne(id) {
-        const findUser = await this.usersRepo.findOneBy({ id });
+    findOne(id) {
+        const findUser = this.users.find((user) => user.id === id);
         if (!findUser)
-            throw new common_1.NotFoundException("user not found");
+            throw new common_1.NotFoundException(`User with id: ${id} not found0`);
         return findUser;
     }
-    async update(id, updateUserDto) {
-        const findUser = await this.usersRepo.findOneBy({ id });
-        if (!findUser)
-            throw new common_1.NotFoundException('user not found');
-        findUser.socialMedia.fbUri = updateUserDto.socialMedia?.fbUri || undefined;
-        findUser.socialMedia.twitterUri = updateUserDto.socialMedia?.twitterUri || undefined;
-        return findUser;
+    update(id, updateUserDto) {
+        const userIndex = this.users.findIndex((user) => user.id === id);
+        if (userIndex !== -1) {
+            this.users[userIndex] = {
+                ...this.users[userIndex],
+                ...updateUserDto
+            };
+            return this.users[userIndex];
+        }
+        throw new common_1.NotFoundException(`User with id: ${id} not found`);
     }
-    async remove(id) {
-        const findUser = await this.usersRepo.findOneBy({ id });
-        if (!findUser)
-            throw new common_1.NotFoundException('user not found');
-        await this.usersRepo.delete(id);
-        return findUser;
+    remove(id) {
+        const userIndex = this.users.findIndex((user) => user.id === id);
+        if (userIndex !== -1) {
+            return this.users.splice(userIndex)[0];
+        }
+        throw new common_1.NotFoundException(`User with id: ${id} not found`);
     }
     queryUsers(paginationDtoStream) {
-        const resultSubject = new rxjs_1.Subject();
+        const subject = new rxjs_1.Subject();
+        const onNext = (paginationDto) => {
+            const start = paginationDto.page * paginationDto.skip;
+            subject.next({
+                users: this.users.slice(start, start + paginationDto.skip)
+            });
+        };
+        const onComplete = () => subject.complete();
         paginationDtoStream.subscribe({
-            next: async (paginationDto) => {
-                const { page, skip } = paginationDto;
-                const offset = page * skip;
-                const entities = await this.usersRepo.find({
-                    skip: offset,
-                    take: skip,
-                });
-                const users = entities.map(entity => ({
-                    id: entity.id,
-                    username: entity.username,
-                    password: entity.password,
-                    age: entity.age,
-                    subscribed: entity.subscribed,
-                    socialMedia: entity.socialMedia,
-                }));
-                resultSubject.next({ users });
-            },
-            error: err => resultSubject.error(err),
-            complete: () => resultSubject.complete()
+            next: onNext,
+            complete: onComplete,
         });
-        return resultSubject.asObservable();
+        return subject.asObservable();
     }
 };
 exports.UsersService = UsersService;
 exports.UsersService = UsersService = __decorate([
-    (0, common_1.Injectable)(),
-    __param(0, (0, typeorm_1.InjectRepository)(entity_1.UserEntity)),
-    __metadata("design:paramtypes", [typeof (_a = typeof typeorm_2.Repository !== "undefined" && typeorm_2.Repository) === "function" ? _a : Object])
+    (0, common_1.Injectable)()
 ], UsersService);
 
 
@@ -420,13 +323,13 @@ module.exports = require("@nestjs/microservices");
 
 /***/ }),
 
-/***/ "@nestjs/typeorm":
-/*!**********************************!*\
-  !*** external "@nestjs/typeorm" ***!
-  \**********************************/
+/***/ "crypto":
+/*!*************************!*\
+  !*** external "crypto" ***!
+  \*************************/
 /***/ ((module) => {
 
-module.exports = require("@nestjs/typeorm");
+module.exports = require("crypto");
 
 /***/ }),
 
@@ -447,16 +350,6 @@ module.exports = require("path");
 /***/ ((module) => {
 
 module.exports = require("rxjs");
-
-/***/ }),
-
-/***/ "typeorm":
-/*!**************************!*\
-  !*** external "typeorm" ***!
-  \**************************/
-/***/ ((module) => {
-
-module.exports = require("typeorm");
 
 /***/ })
 
