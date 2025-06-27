@@ -11,7 +11,7 @@ async function bootstrap() {
         brokers: ['localhost:9092']
       },
       consumer: {
-        groupId: 'order-consumer-group'
+        groupId: 'order_group'
       }
     }
   });

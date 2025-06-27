@@ -95,7 +95,7 @@ exports.AppModule = AppModule = __decorate([
                     transport: microservices_1.Transport.KAFKA,
                     options: {
                         client: {
-                            brokers: ['localhost: 9092']
+                            brokers: ['localhost:9092']
                         }
                     }
                 }
